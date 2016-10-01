@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  form(action="/form", method="post")
+    div
+    br
+    input(type="text", placeholder="lesson title", name="title")
+    div
+    br
+    input(type="text", placeholder="lesson description", name="description", style="height: 200px;")
+    div
+    br
+    input(type="number", placeholder="hours", name="hours", style="width: 50px;")
+    input(type="number", placeholder="minutes", name="minutes", style="width: 50px;")
+    div
+    br
+    input(type="file", placeholder="file", name="file")
+    br
+    input(type="file", placeholder="image", name="image")
+    div
+    br
+    input(type="Submit")
