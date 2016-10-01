@@ -1,6 +1,26 @@
 extends layout
 
 block content
-  div= title
+  div
+    span Title:&nbsp;
+    span= title
+  div
+    span Description:&nbsp;
+    span= description
+  div
+    span Time:&nbsp;
+    span Hours:
+    span= hours
+    span &nbsp;|&nbsp;
+    span Minutes:&nbsp;
+    span= minutes
+  div
+    span Image:&nbsp;
+    br
+    img(src=image, style="max-height: 300px; max-width: 200px;")
+  div
+    span Filename:&nbsp;
+    span= file
+  br
   div
     a(href="/") Go to home

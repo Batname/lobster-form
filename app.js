@@ -1,3 +1,4 @@
+var fs = require('fs');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -8,6 +9,10 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var form = require('./routes/form');
+
+if (!fs.existsSync('./public/files')) fs.mkdirSync('./public/files');
+if (!fs.existsSync('./public/files/file')) fs.mkdirSync('./public/files/file');
+if (!fs.existsSync('./public/files/image')) fs.mkdirSync('./public/files/image');
 
 var app = express();
 
