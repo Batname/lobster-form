@@ -5,9 +5,17 @@ block content
     div
     br
     input(type="text", placeholder="lesson title", name="title")
+    span &nbsp;
+    span#titleCounter(style="color: red") 0
+    span &nbsp;/&nbsp;
+    span 35
     div
     br
-    input(type="text", placeholder="lesson description", name="description", style="height: 200px;")
+    textarea(placeholder="lesson description", name="description", style="height: 200px")
+    span &nbsp;
+    span#descriptionCounter(style="color: red") 0
+    span &nbsp;/&nbsp;
+    span 200
     div
     br
     input(type="number", placeholder="hours", name="hours", style="width: 50px;")
@@ -21,4 +29,54 @@ block content
     label File
     div
     br
-    input(type="Submit")
+    input(type="Submit", disabled, name="submit", style="width: 150px; font-size: 20px; border: none; background-color: #f8f8f8;")
+  script.
+    var title = document.getElementsByName('title')[0];
+    var description = document.getElementsByName('description')[0];
+    var submit = document.getElementsByName('submit')[0];
+    var titleCounter = document.getElementById('titleCounter');
+    var descriptionCounter = document.getElementById('descriptionCounter');
+    var submitValidator = {
+      title: false,
+      description: false
+    };
+
+    function submitCheck () {
+      if(submitValidator.title && submitValidator.description){
+        submit.disabled = false;
+        submit.style.backgroundColor = '#82bfe8';
+      }
+      else {
+        submit.disabled = true;
+        submit.style.backgroundColor = '#f8f8f8';
+      }
+    }
+
+    title.oninput = function(event) {
+      var length = event.target.value.length;
+      var name = event.target.name;
+      if (length > 0 && length < 36) {
+        submitValidator[name] = true;
+        titleCounter.style.color = 'black';
+      } else {
+        submitValidator[name] = false;
+        titleCounter.style.color = 'red';
+      }
+      titleCounter.innerText = length;
+      submitCheck();
+    };
+
+    description.oninput = function(event) {
+      var length = event.target.value.length;
+      var name = event.target.name;
+      if (length > 0 && length < 201) {
+        submitValidator[name] = true;
+        descriptionCounter.style.color = 'black';
+      } else {
+        submitValidator[name] = false;
+        descriptionCounter.style.color = 'red';
+      }
+      descriptionCounter.innerText = length;
+      submitCheck();
+    };
+
